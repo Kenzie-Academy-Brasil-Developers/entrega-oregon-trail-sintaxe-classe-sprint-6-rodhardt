@@ -3,15 +3,44 @@
 class Traveler {
 
     constructor(name) {
-        this.name = name
-        this.foodQuantity = 1
-        this.isHealthy = true
+        this._name = name
+        this._foodQuantity = 1
+        this._isHealthy = true
     }
 
-    hunt() {
+    get name() {
+        return this._name
+    }
+
+    set name(name) {
+        return `The Traveler name cannot be changed.`
+    }
+
+    get foodQuantity() {
+        return this._foodQuantity
+    }
+
+    set foodQuantity(value) {
+        this._foodQuantity = value
+        if (this._foodQuantity < 0) {
+            this._foodQuantity = 0
+        }
+        return this._foodQuantity
+    }
+
+    get isHealthy() {
+        return this._isHealthy
+    }
+
+    set isHealthy(boolean) {
+        this._isHealthy = boolean
+        return this._isHealthy
+    }
+
+    hunt = () => {
         this.foodQuantity += 2
     }
-    eat() {
+    eat = () => {
         if (this.foodQuantity === 0) {
             this.isHealthy = false
         }
@@ -26,8 +55,27 @@ class Traveler {
 class Wagon {
 
     constructor(capacity) {
-        this.capacity = capacity
-        this.currentPassengers = []
+        this._capacity = capacity
+        this._currentPassengers = []
+    }
+
+    get capacity() {
+        return this._capacity
+    }
+
+    set capacity(value) {
+        return `The wagon capacity cannot be changed.`
+    }
+
+    get currentPassengers() {
+        return this._currentPassengers
+    }
+
+    set currentPassengers(personArray) {
+        if (Array.isArray(personArray)) {
+            this._currentPassengers = personArray
+        }
+        return this._currentPassengers
     }
 
     getAvailableSeatCount = () => {
